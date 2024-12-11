@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Projeto em JSP</title>
+    <meta charset="UTF-8">
+    <title>Projeto em JSP</title>
 </head>
 <body>
 
@@ -12,13 +11,26 @@
 
 <form action="ServletLogin" method="post">
 
-
-<input name= "nome">
-<input name= "idade">
-
-<input type="submit" value= "Enviar">
+<table>
+    <tr>
+        <td><label>Login</label></td>
+        <td><input name="login" type="text"></td>
+    </tr>
+    <tr>
+        <td><label>Senha</label></td>
+        <td><input name="senha" type="password"></td>
+    </tr>
+    
+    	<tr>
+    	</td>
+        	<td>
+            <input type="submit" value="Enviar">
+        	</td>
+   		</tr>
+</table>
 
 </form>
+<h3>${msg}</h3>
 
 </body>
 </html>
