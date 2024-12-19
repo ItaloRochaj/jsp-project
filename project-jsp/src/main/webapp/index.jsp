@@ -27,6 +27,9 @@
         position: absolute;
         top: 70%;
         left: 33%;
+        color:#664d03;
+        background-color: #fff3cd;
+        border-color: #ffecd5;
     }
     </style>
 </head>
@@ -37,7 +40,7 @@
 <form action="ServletLogin" method="post" class="row g-3 needs-validation" novalidate>
     <input type="hidden" value="<%= request.getParameter("url") %>" name="url">
 
-    <div class="col-md-6">
+    <div class="md-3">
         <label class="form-label">Login</label>
         <input class="form-control" id="Login" name="login" type="text" required>
         <div class="invalid-feedback">
@@ -45,7 +48,7 @@
         </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="md-3">
         <label class="form-label">Senha</label>
         <input class="form-control" id="senha" name="senha" type="password" required>
         <div class="invalid-feedback">
@@ -58,7 +61,7 @@
     </div>
 </form>
 
-<h5 class="msg">${msg}</h5>
+<h6 class="msg">${msg}</h6>
 
 <script>
 (function () {
