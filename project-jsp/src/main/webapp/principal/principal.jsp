@@ -50,7 +50,7 @@
                                             <!-- Additional Content Here -->
                                         </div>
                                     </div>
-                                    <h1>teste</h1>
+                                    <h1>Pagina de Estudos</h1>
                                 </div>
                                 <div id="styleSelector"> </div>
                             </div>

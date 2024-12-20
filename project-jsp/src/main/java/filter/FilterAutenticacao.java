@@ -41,41 +41,38 @@ public class FilterAutenticacao extends HttpFilter implements Filter {
     /* Intercepta as requisições e as respostas do sistema. */
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) 
             throws IOException, ServletException {
-        
+
         HttpServletRequest req = (HttpServletRequest) request;
         HttpSession session = req.getSession();
-        
+
         String usuarioLogado = (String) session.getAttribute("usuario");
         String urlParaAutenticar = req.getServletPath(); /* Url que está sendo acessada. */
-        
+
         // Verifica se o usuário está logado, senão redireciona para a tela de login
-        if (usuarioLogado == null && !urlParaAutenticar.equalsIgnoreCase("/principal/ServletLogin")) { /* Não logado */
+        if (usuarioLogado == null && !urlParaAutenticar.equalsIgnoreCase("/principal/ServletLogin")) { 
+            // Não logado
             RequestDispatcher redireciona = request.getRequestDispatcher("/index.jsp?url=" + urlParaAutenticar);
             request.setAttribute("msg", "Por favor realize o login!");
             redireciona.forward(request, response);
-            
-            return; /* Retorna para efetuar o login */
-            
-        } else {
-            try {
-                // Executa a cadeia de filtros se o usuário estiver logado
-                chain.doFilter(request, response);
-                
-                ((FilterChain) connection).doFilter(request, response); /*Seguindo tudo bem a conecxão é estabelecida.*/
-               
-            } catch (Exception e) {
-                e.printStackTrace();
-                // Caso haja erro, fazer rollback
-                if (connection != null) {
-                    try {
-                        connection.rollback();
-                    } catch (SQLException ex) {
-                        ex.printStackTrace();
-                    }
+            return; // Retorna para efetuar o login
+        }
+
+        try {
+            // Executa a cadeia de filtros se o usuário estiver logado
+            chain.doFilter(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Caso haja erro, fazer rollback
+            if (connection != null) {
+                try {
+                    connection.rollback();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
                 }
             }
         }
     }
+
 
     /* Inicia os processos ou recursos quando o servidor inicia o projeto. */
     /* Inicia a conexão com o banco de dados. */

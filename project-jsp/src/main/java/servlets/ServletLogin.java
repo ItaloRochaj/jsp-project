@@ -23,8 +23,16 @@ public class ServletLogin extends HttpServlet {
 
     /* Recebe os dados pela URL em parâmetros */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.getWriter().append("Served at: ").append(request.getContextPath());
-        doPost(request, response);
+
+        String acao = request.getParameter("acao");
+
+        if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("logout")) {
+            request.getSession().invalidate(); // invalida a sessão.
+            RequestDispatcher redirecionar = request.getRequestDispatcher("index.jsp");
+            redirecionar.forward(request, response);
+        } else {
+            doPost(request, response);
+        }
     }
 
     /* Recebe os dados enviados por um formulário */
